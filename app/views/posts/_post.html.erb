@@ -1,11 +1,10 @@
 <article class="col-12 col-md-6 tm-post">
-    <hr class="tm-hr-primary">
-    <a href="post.html" class="effect-lily tm-post-link tm-pt-60">
+    <%= link_to post_path(post), class: "effect-lily tm-post-link tm-pt-60" do %>
         <div class="tm-post-link-inner">
             <img src="img/img-01.jpg" alt="Image" class="img-fluid">                            
         </div>
         <h2 class="tm-pt-30 tm-color-primary tm-post-title"><%= truncate( post.title, length: 100 ) %></h2>
-    </a>                    
+    <% end %>            
     <p class="tm-pt-30">
         <%= post.content %>
     </p>
