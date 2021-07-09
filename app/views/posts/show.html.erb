@@ -1,16 +1,20 @@
-<main class="tm-main"> 
-    <div class="row tm-row">
-        <div class="col-lg-8 tm-post-col">
-            <div class="tm-post-full">                    
-                <div class="mb-4">
-                    <h2 class="pt-2 tm-color-primary tm-post-title"><%= @post.title %></h2>
-                    <p class="tm-mb-40">posted by Abdullah <%= time_ago_in_words(@post.created_at) %></p>
-                    <%= @post.content %>
-                    <span class="d-block text-right tm-color-primary">Creative . Design . Business</span>
-                </div>
-                
-            </div>
-        </div>
-        
-    </div>
-</main>
+<div class="mb-4 text-  center">
+    <h2 class="pt-2 tm-color-primary tm-post-title"><%= @post.title %></h2>
+    <p class="tm-mb-40">
+        posted by <%= @post.user.username %> <br> 
+        <%= time_ago_in_words(@post.created_at) %> ago
+    </p>
+    <%= @post.content %>
+    <% if user_signed_in? && current_user == @post.user %>
+        <span class="d-block text-right tm-color-primary">
+            <%= link_to "Edit", edit_post_path(@post), { style: "text-decoration: none;" ,class: "link-secondary btn btn-info"} %>
+            <%= link_to "Delete", post_path(@post), method: :delete, style: "text-decoration: none;" ,class: "link-danger btn btn-warning" %>
+        </span>
+    <% end %>
+</div>
+<% if user_signed_in? %>
+    <%= render 'comments/form' %>
+<% end %>
+<% if @comments.any? %>
+    <%= render partial: 'comments/comments', locals: {comments: @comments} %>
+<% end %>

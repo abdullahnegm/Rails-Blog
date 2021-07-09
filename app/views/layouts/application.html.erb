@@ -8,12 +8,17 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
 
+    <%= render "layouts/sidenav" %>
     <div class="container-fluid">
-      <%= yield %>
+      <%= render "layouts/flash" %>
+      <main class="tm-main"> 
+        <%= yield %>
+      </main>
     </div>
     
     <%= render "layouts/footer" %>
