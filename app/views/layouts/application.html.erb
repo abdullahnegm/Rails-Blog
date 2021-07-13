@@ -6,11 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src='https://js.stripe.com/v3/'></script>
+    <meta name="turbolinks-cache-control" content="no-cache">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'false' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'false' %>
+
   </head>
 
   <body>
-    <%= yield %>
+
+    <%= render "layouts/sidenav" %>
+    <div class="container-fluid">
+      <%= render "layouts/flash" %>
+      <main class="tm-main"> 
+        <%= yield %>
+      </main>
+    </div>
+    
+    <%= render "layouts/footer" %>
   </body>
 </html>

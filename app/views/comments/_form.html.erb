@@ -1,0 +1,9 @@
+<%= form_with model: [@post, @comment], class: "mb-5 tm-comment-form" do |f| %>
+    <div class="mb-4">
+        <%= f.label :comment %>
+        <%= f.text_area :content, class: 'form-control', rows: 10 %>
+    </div>
+    <div class="text-right">
+        <%= f.submit "Comment", class: "tm-btn tm-btn-primary tm-btn-small" %>
+    </div>                                
+<% end %>

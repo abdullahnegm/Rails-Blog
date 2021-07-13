@@ -1,0 +1,45 @@
+<header class="tm-header" id="tm-header">
+    <div class="tm-header-wrapper">
+        <div class="tm-site-header text-center">
+            <%= link_to root_path, style: "text-decoration: none; color: white" do %>
+                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
+                <h1 class="text-center">Turtles Blog</h1>
+            <% end %>
+
+            <% if user_signed_in? %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-lg btn-outline-light my-2 my-lg-0"%>
+            <% else %>
+                <%= link_to "Signin", user_session_path, class: "btn btn-lg btn-outline-light my-2 my-lg-0"%>
+            <% end %>
+        </div>
+        <li class="mb-3">
+            <%= button_to "Pay Post", payment_path, remote: true, class: "btn btn-lg btn-outline-light my-2 my-lg-0", style: "width: 200px"%>
+        </li>
+
+        <% if user_signed_in? %>
+            <nav class="tm-nav">            
+                <ul style="list-style-type: none;" class="text-center">
+                    <li class="mb-3">
+                        <%= image_tag current_user.picture.url, size: "200x200" if current_user.picture?%>
+                    </li> 
+                    <li class="mb-3">
+                        <%= link_to "Users", users_path, class: "btn btn-lg btn-outline-light my-2 my-lg-0", style: "width: 200px" %>
+                    </li>              
+                    <li class="mb-3">
+                        <%= link_to_unless_current("Profile", profile_path, class: "btn btn-lg btn-outline-light my-2 my-lg-0", style: "width: 200px") %>
+                    </li>
+                    <li class="mb-3">
+                        <%= link_to "Profile", profile_path, class: "btn btn-lg btn-outline-light my-2 my-lg-0", style: "width: 200px"%>
+                    </li>
+                    <li class="mb-3">
+                        <%= link_to "Create Post", new_post_path, class: "btn btn-lg btn-outline-light my-2 my-lg-0", style: "width: 200px"%>
+                    </li>
+                    <li class="mb-3">
+                        <%= link_to "Favourite Post", fav_posts_path, class: "btn btn-lg btn-outline-light my-2 my-lg-0", style: "width: 200px" %>
+                    </li>
+                </ul>
+                
+            </nav>
+        <% end %>
+    </div>
+</header>
