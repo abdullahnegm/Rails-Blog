@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "posts#index"
 
+  post "/payment", to: "payments#create"
+
+  resources :messages, only: [:create, :new]
+  resources :conversations, only: [:index, :show]
+  resources :users, only: %i[index]
+
   resources :posts, except: [:index] do 
     resources :comments, only: [:create]
   end
@@ -14,4 +20,6 @@ Rails.application.routes.draw do
       get :unfavourite
     end
   end
+
+  mount ActionCable.server => '/cable'
 end
