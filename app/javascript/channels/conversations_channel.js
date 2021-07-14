@@ -12,6 +12,12 @@ consumer.subscriptions.create("ConversationsChannel", {
 
   received(data) {
     // Called when there's incoming data on the websocket for this channel
-    console.log(data.message)
+    console.log(data)
+    document.getElementById("conversation-body").insertAdjacentHTML('beforeend', `
+                                  <p>${ data.message.body }</p>
+                                  <p>at <strong>${ data.message.created_at }</strong><br>
+                                    by <strong>${ data.user }</strong></p>
+                                  <hr>
+    `)
   }
 });

@@ -10,13 +10,12 @@ class MessagesController < ApplicationController
 
       @receiver = User.find_by(id: params[:receiver_id])
 
-      ActionCable.server.broadcast @conversation.with(current_user).id, {message: @message.body}
+      ActionCable.server.broadcast @conversation.with(current_user).id, {message: @message, user: @message.user.username}
     
       flash[:success] = "Your message was sent!"
-      respond_to do |format| 
-        format.js {render partial: 'message', locals: { message: @message }}
-        # format.html { redirect_to conversation_path(@conversation) }
-      end
+      # respond_to do |format| 
+      #   format.js {render partial: 'message', locals: { message: @message }}
+      # end
       # redirect_to conversation_path(@conversation)
     end
 
