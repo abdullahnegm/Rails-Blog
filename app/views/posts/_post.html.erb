@@ -12,10 +12,12 @@
     <div class="d-flex justify-content-between tm-pt-45" height="200">
         <span class="tm-color-primary"><%= post.user.username %></span>
         <span class="tm-color-primary"><%= time_ago_in_words( post.created_at ) %></span>
-        <% if user_signed_in? && is_favourite?(post) %>
-            <%= link_to "Unfollow", favourite_fav_posts_path(id: post.id), class: "btn btn-info" %>
-        <% else %>
-            <%= link_to "Follow", unfavourite_fav_posts_path(id: post.id), class: "btn btn-info" %>
+        <% if user_signed_in? %>
+            <% if is_favourite?(post) %>
+                <%= link_to "unFavourite", favourite_fav_posts_path(id: post.id), class: "btn btn-info" %>
+            <% elsif  %>
+                <%= link_to "Favourite", unfavourite_fav_posts_path(id: post.id), class: "btn btn-info" %>
+            <% end %>
         <% end %>
     </div>
     <hr>
